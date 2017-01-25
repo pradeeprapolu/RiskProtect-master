@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Incidents Information
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="incident-info">
+
+    <form>
+
+        <ion-label color="danger" padding>
+            <h1><b>CGI</b></h1>
+        </ion-label>
+        <ion-label color="danger" text-center>
+            <h2><b>Accidents & Convictions</b></h2>
+        </ion-label>
+
+        <button ion-button round color="light" (click)="openPolicySummary()"><a color="danger"><b>Add Conviction</b></a></button><br>
+        
+        <ion-item>
+            <ion-label for="incConvictDate">Conviction Date</ion-label>
+            <ion-datetime pickerFormat="MMM DD YYYY" displayFormat="MM-DD-YYYY" [(ngModel)]="incConvictDate" name="incConvictDate"></ion-datetime>
+        </ion-item>
+        <ion-list>
+            <ion-item>
+                <ion-label>Conviction Type</ion-label>
+                <ion-select (ngModel)="convictionType" name="convictionType">
+                    <ion-option value="atFault">At-Fault Accident</ion-option>
+                    <ion-option value="notAtFault">Not-At-Fault Accident</ion-option>
+                    <ion-option value="speedMajor">Speed/Major</ion-option>
+                    <ion-option value="speedMinor">Speed/Minor</ion-option>
+                    <ion-option value="unsafeOperation">Unsafe Operation of Vehicle</ion-option>
+                    <ion-option value="licRevoked">License Revoked</ion-option>
+                    <ion-option value="licSuspension">License Suspension</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+        <ion-item class="form-group">
+            <ion-label for="incDriverRef" floating>Driver #</ion-label>
+            <ion-input (ngModel)="incDriverRef" #incDriverRef="ngModel" id="incDriverRef" class="form-control" type="text" name="incDriverRef"
+                required>
+            </ion-input>
+        </ion-item>
+        <ion-segment>
+            <ion-item class="form-group">
+                <ion-label for="incSVCCode" floating>SVC Code</ion-label>
+                <ion-input (ngModel)="incSVCCode" #incSVCCode="ngModel" id="incSVCCode" class="form-control" type="text" name="incSVCCode"
+                    required>
+                </ion-input>
+            </ion-item>
+            <ion-item class="form-group">
+                <ion-label for="incPoints" floating>Points</ion-label>
+                <ion-input (ngModel)="incPoints" #incPoints="ngModel" id="incPoints" class="form-control" type="text" name="incPoints" required>
+                </ion-input>
+            </ion-item>
+        </ion-segment>
+
+        <button ion-button color="danger">ADD ANOTHER CONVICTION</button>
+        <button ion-button color="danger" (click)="openPolicySummaryPage()">Save & Proceed</button>
+    </form>
+</ion-content>

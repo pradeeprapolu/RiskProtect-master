@@ -1,0 +1,291 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Applicant Information
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<!-- <ion-content padding> -->
+
+
+<!-- <div class="jumbotron">
+    <h2>Form with Validations</h2>
+    <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+    <span class="label">
+    <h1 style="color:red; font-size:100%; text-align:left;"><b>Primary Applicant</b></h1>
+    </span>
+      <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['firstName'].valid && complexForm.controls['firstName'].touched}">
+        <label>First Name:</label>
+        <input class="form-control" type="text" placeholder="John" [formControl]="complexForm.controls['firstName']">
+         //The hasError method will tell us if a particular error exists
+        <div *ngIf="complexForm.controls['firstName'].hasError('required') && complexForm.controls['firstName'].touched" class="alert alert-danger">You must include a first name.</div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['lastName'].valid && complexForm.controls['lastName'].touched}">
+        <label>Last Name</label>
+        <input class="form-control" type="text" placeholder="Doe" [formControl]="complexForm.controls['lastName']">
+        // The hasError method can work with the built in validators but custom validators as well 
+        <div *ngIf="complexForm.controls['lastName'].hasError('required') && complexForm.controls['lastName'].touched" class="alert alert-danger">You must include a last name.</div>
+        <div *ngIf="complexForm.controls['lastName'].hasError('minlength') && complexForm.controls['lastName'].touched" class="alert alert-danger">Your last name must be at least 5 characters long.</div>
+        <div *ngIf="complexForm.controls['lastName'].hasError('maxlength') && complexForm.controls['lastName'].touched" class="alert alert-danger">Your last name cannot exceed 10 characters.</div>
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="alert alert-danger" *ngIf="!complexForm.controls['gender'].valid && complexForm.controls['gender'].touched">You must select a gender.</div>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="gender" value="Male" [formControl]="complexForm.controls['gender']">
+          Male
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="gender" value="Female" [formControl]="complexForm.controls['gender']">
+          Female
+        </label>
+      </div>
+      <div class="form-group">
+        <label>Activities</label>
+      </div>
+      <label class="checkbox-inline">
+        <input type="checkbox" value="hiking" name="hiking" [formControl]="complexForm.controls['hiking']"> Hiking
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" value="swimming" name="swimming" [formControl]="complexForm.controls['swimming']"> Swimming
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" value="running" name="running" [formControl]="complexForm.controls['running']"> Running
+      </label>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="!complexForm.valid">Submit</button>
+      </div>
+    </form>
+  </div>    -->
+
+<!--<form [formGroup]="myForm">
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input ngModel = "firstName" #firstName="ngModel" placeholder="first name"
+            id="firstName" type="text" class="form-control" (change) = 'log(firstName)' name="firstName" required>
+        <div *ngIf= "firstName.touched && !firstName.valid" class="alert alert-danger" >First Name is required.</div>
+    </div>
+
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel = "comment" #comment = "ngModel" placeholder="comments"
+            id="comment" cols="30" rows="10" class="form-control" name="comment" required></textarea>
+        <div *ngIf= "comment.touched && !comment.valid" class="alert alert-danger">Comment is required.</div>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+-->
+
+<ion-content padding class="app-info">
+    <form #fId="ngForm" (ngSubmit)="onSubmit(fId.form)">
+        <ion-item>
+            <ion-label>
+                <h3 color="danger">
+                    <b>Primary Applicant</b>
+                </h3>
+            </ion-label>
+        </ion-item>
+
+
+        <ion-segment>
+
+            <ion-item class="form-group">
+                <ion-label for="appFirstName" floating>First Name</ion-label>
+                <ion-input (ngModel)="appFirstName" #appFirstName="ngModel" id="appFirstName" class="form-control" type="text" name="appFirstName"
+                    required minlength="3">
+                </ion-input>
+            </ion-item>
+
+
+
+
+            <ion-item class="form-group">
+                <ion-label for="appMiddleName" floating>Middle Name</ion-label>
+                <ion-input (ngModel)="appMiddleName" #appMiddleName="ngModel" id="appMiddleName" type="text" class="form-control" name="appMiddleName"
+                    maxlength="1">
+                </ion-input>
+            </ion-item>
+
+        </ion-segment>
+
+        <div *ngIf="appFirstName.touched && appFirstName.errors">
+            <!-- {appFirstName.errors | json} -->
+            <div *ngIf="appFirstName.errors.required" class="alert alert-danger" color="danger">
+                <p color="danger">First Name is required.</p>
+            </div>
+            <div class="alert alert-danger" *ngIf="appFirstName.errors.minlength" color="danger">
+                <p color="danger">
+                    First name should be minimum {{appFirstName.errors.minlength.requiredLength}} characters.
+                </p>
+            </div>
+        </div>
+
+        <ion-item class="form-group">
+            <ion-label for="appLastName" floating>Last Name</ion-label>
+            <ion-input (ngModel)="appLastName" #appLastName="ngModel" id="appLastName" type="text" class="form-control" name="appLastName"
+                required minlength="3">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <div *ngIf="appLastName.touched && appLastName.errors">
+                <!-- {appLastName.errors | json} -->
+                <div *ngIf="appLastName.errors.required" class="alert alert-danger" color="danger">
+                    <p color="danger">Last Name is required.</p>
+                </div>
+                <div class="alert alert-danger" *ngIf="appLastName.errors.minlength" color="danger">
+                    <p color="danger">
+                        Last name should be minimum {{appLastName.errors.minlength.requiredLength}} characters.
+                    </p>
+                </div>
+            </div>
+        </ion-item>
+
+
+        <ion-item>
+            <ion-label>Date of Birth</ion-label>
+            <ion-datetime pickerFormat="MMM DD YYYY" displayFormat="MM/DD/YYYY" [(ngModel)]="appDOB" name="appDOB"></ion-datetime>
+        </ion-item>
+        <ion-list>
+            <ion-item>
+                <ion-label>Marital Status</ion-label>
+                <ion-select (ngModel)="maritalStatus" name="maritalStatus">
+                    <ion-option value="married">Married</ion-option>
+                    <ion-option value="single">Single</ion-option>
+                    <ion-option value="divorced">Divorced</ion-option>
+                    <ion-option value="separated">Separated</ion-option>
+                    <ion-option value="widowed">Widowed</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+        <ion-item>
+            <ion-label>
+                <h3 color="danger"><b>{{coAppCheckBox.label}}</b></h3>
+            </ion-label>
+            <ion-checkbox color="light" checked="coAppCheckBox.state" [(ngModel)]="coAppCheckBox.state" name="coAppCheck"></ion-checkbox>
+        </ion-item>
+
+        <ion-segment>
+
+            <ion-item class="form-group">
+                <ion-label for="coAppFirstName" floating>First Name</ion-label>
+                <ion-input (ngModel)="coAppFirstName" #coAppFirstName="ngModel" id="coAppFirstName" class="form-control" type="text" name="coAppFirstName"
+                    required minlength="3" [disabled]="coAppInfoState()">
+                </ion-input>
+            </ion-item>
+
+
+
+            <ion-item class="form-group">
+                <ion-label for="coAppMiddleName" for="coAppMiddleName" floating>Middle Name</ion-label>
+                <ion-input (ngModel)="coAppMiddleName" #coAppMiddleName="ngModel" id="coAppMiddleName" type="text" class="form-control" name="coAppMiddleName"
+                    maxlength="1" [disabled]="coAppInfoState()">
+                </ion-input>
+            </ion-item>
+
+        </ion-segment>
+
+        <div *ngIf="coAppFirstName.touched && coAppFirstName.errors">
+            <!-- {firstName.errors | json} -->
+            <div *ngIf="coAppFirstName.errors.required" class="alert alert-danger" color="danger">
+                <p color="danger">First Name is required.</p>
+            </div>
+            <div class="alert alert-danger" *ngIf="coAppFirstName.errors.minlength" color="danger">
+                <p color="danger">
+                    First name should be minimum {{coAppFirstName.errors.minlength.requiredLength}} characters.
+                </p>
+            </div>
+        </div>
+
+        <ion-item class="form-group">
+            <ion-label for="coAppLastName" floating>Last Name</ion-label>
+            <ion-input (ngModel)="coAppLastName" #coAppLastName="ngModel" id="coAppLastName" type="text" class="form-control" name="coAppLastName"
+                required minlength="3" [disabled]="coAppInfoState()">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <div *ngIf="coAppLastName.touched && coAppLastName.errors">
+                <!-- {firstName.errors | json} -->
+                <div *ngIf="coAppLastName.errors.required" class="alert alert-danger" color="danger">
+                    <p color="danger">Last Name is required.</p>
+                </div>
+                <div class="alert alert-danger" *ngIf="coAppLastName.errors.minlength" color="danger">
+                    <p color="danger">
+                        Last name should be minimum {{coAppLastName.errors.minlength.requiredLength}} characters.
+                    </p>
+                </div>
+            </div>
+        </ion-item>
+
+
+        <ion-item>
+            <ion-label>Date of Birth</ion-label>
+            <ion-datetime pickerFormat="MMM DD YYYY" displayFormat="MM/DD/YYYY" (ngModel)="coAppDOB" name="coAppDOB" [disabled]="coAppInfoState()"></ion-datetime>
+        </ion-item>
+
+
+        <ion-list>
+            <ion-item>
+                <ion-label>Relationship with Insured</ion-label>
+                <ion-select (ngModel)="relationshipWithInsured" cancelText="Cancel" okText="Ok" name="relationshipWithInsured" [disabled]="coAppInfoState()">
+                    <ion-option value="spouse">Spouse</ion-option>
+                    <ion-option value="child">Child</ion-option>
+                    <ion-option value="employee">Employee</ion-option>
+                    <ion-option value="parent">Parent</ion-option>
+                    <ion-option value="sibling">Sibling</ion-option>
+                    <ion-option value="other">Other</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+
+        <button ion-button color="danger" (click)="openIncidentInfoPage()" [disabled]="!fId.valid">Save & Proceed</button>
+    </form>
+
+</ion-content>
+<!-- <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input (ngModel) = "firstName" #firstName="ngModel" 
+            id="firstName" type="text" class="form-control" 
+                name="firstName" required minlength="3">
+        <div *ngIf="firstName.touched && firstName.errors">
+          // {firstName.errors | json} 
+            <div *ngIf= "firstName.errors.required" 
+                class="alert alert-danger" >First Name is required.
+            </div>
+            <div class="alert alert-danger"
+                *ngIf = "firstName.errors.minlength">
+                    First name should be minimum {{firstName.errors.minlength.requiredLength}} characters.
+            </div>
+        </div>
+    </div>  
+
+    <div class="form-group">
+        <label for="middleName">Middle Name</label>
+        <input (ngModel) = "middleName" #middleName = "ngModel"  
+            id="middleName" class="form-control" name="middleName" maxlength="1">
+     
+    </div>
+
+     <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input (ngModel) = "lastName" #lastName="ngModel" 
+            id="lastName" type="text" class="form-control" 
+                name="lastName" required minlength="3">
+        <div *ngIf="lastName.touched && lastName.errors">
+           // {firstName.errors | json} 
+            <div *ngIf= "lastName.errors.required" 
+                class="alert alert-danger" >Last Name is required.
+            </div>
+            <div class="alert alert-danger"
+                *ngIf = "lastName.errors.minlength">
+                    Last name should be minimum {{lastName.errors.minlength.requiredLength}} characters.
+            </div>
+        </div>
+    </div>-->

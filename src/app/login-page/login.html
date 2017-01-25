@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Login
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="login">
+    <form>
+
+        <ion-label class="header" color="danger" text-center>
+            CGI
+        </ion-label>
+
+        <ion-item class="form-group">
+            <ion-label for="loginUserName" floating>User Name</ion-label>
+            <ion-input (ngModel)="loginUserName" #loginUserName="ngModel" id="loginUserName" class="form-control" type="text" name="loginUserName"
+                required minlength="3">
+            </ion-input>
+        </ion-item>
+
+        <ion-item class="form-group margin-bottom">
+            <ion-label for="loginPassword" floating>Password</ion-label>
+            <ion-input (ngModel)="loginPassword" #loginPassword="ngModel" id="loginPassword" type="password" class="form-control" name="loginPassword"
+                maxlength="1">
+            </ion-input>
+        </ion-item>
+
+        <div class="align-center">
+            <button ion-button large class="align-center margin-bottom" color="danger" (click)="openHomePage()">Sign In</button>
+        </div>
+
+
+        <ion-label><b>New User?</b></ion-label>
+
+        <ion-segment>
+            <ion-item class ="item-borderless">
+                <div class="align-center">
+                    <button ion-button color="danger">Sign Up</button>
+                </div>
+            </ion-item>
+            <ion-item class ="item-borderless">
+                    <ion-label text-center>OR</ion-label>
+            </ion-item>
+            <ion-item class ="item-borderless">
+                <div class="align-center">
+                    <button ion-button color="danger" (click)="openHomePage()" item-middle>Continue As Guest</button>
+                </div>
+            </ion-item>
+        </ion-segment>
+
+    </form>
+
+</ion-content>
+
+<!--<router-outlet></router-outlet>-->

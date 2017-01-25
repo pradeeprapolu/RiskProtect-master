@@ -1,0 +1,120 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            VIN Details
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="vin-details">
+
+    <form>
+
+        <ion-label color="danger">
+            <h1><b>CGI</b></h1>
+        </ion-label>
+
+        <ion-item class="form-group">
+            <ion-label color="danger">VIN Number</ion-label>
+            <ion-input (ngModel)="vinNumber" #vinNumber="ngModel" id="vinNumber" type="text" class="form-control" name="vinNumber" required
+                maxlength="17" [disabled]="vinUnknownStatus()">
+            </ion-input>
+        </ion-item>
+        <div *ngIf="vinNumber.touched && vinNumber.errors">
+            <div *ngIf="vinNumber.errors.required" class="alert alert-danger" color="danger">
+                <p color="danger">Please enter 17 digit VIN Number</p>
+            </div>
+        </div>
+
+        <ion-item>
+            <ion-label color="danger" for="vinUnknownStatus">{{vinUnknownCheckbox.label}}</ion-label>
+            <ion-checkbox color="light" checked="vinUnknownCheckbox.state" [(ngModel)]="vinUnknownCheckbox.state" name="vinUnknownStatus"
+                id="vinUnknownStatus"></ion-checkbox>
+        </ion-item>
+
+        <ion-segment>
+            <ion-item class="form-group">
+                <ion-label for="vehYear" color="danger">Year</ion-label>
+                <ion-input (ngModel)="vehYear" #vehYear="ngModel" id="vehYear" type="text" class="form-control" name="vehYear" required maxlength="4">
+                </ion-input>
+            </ion-item>
+
+            <ion-item class="form-group">
+                <ion-label for="vehMake" color="danger">Make</ion-label>
+                <ion-input (ngModel)="vehMake" #vehMake="ngModel" id="vehMake" type="text" class="form-control" name="vehMake" required>
+                </ion-input>
+            </ion-item>
+
+            <ion-item class="form-group">
+                <ion-label for="vehModel" color="danger">Model</ion-label>
+                <ion-input (ngModel)="vehModel" #vehModel="ngModel" id="vehModel" type="text" class="form-control" name="vehModel" required>
+                </ion-input>
+            </ion-item>
+        </ion-segment>
+        <ion-item class="form-group">
+            <ion-label for="vehBodyType" color="danger">Body Type</ion-label>
+            <ion-input (ngModel)="vehBodyType" #vehBodyType="ngModel" id="vehBodyType" type="text" class="form-control" name="vehBodyType"
+                required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item class="form-group">
+            <ion-label for="vehGarageZip" color="danger">Garage Zip</ion-label>
+            <ion-input (ngModel)="vehGarageZip" #vehGarageZip="ngModel" id="vehGarageZip" type="text" class="form-control" name="vehGarageZip"
+                required minlength="5" maxlength="5">
+            </ion-input>
+        </ion-item>
+        <div *ngIf="vehGarageZip.touched && vehGarageZip.errors">
+            <div *ngIf="vehGarageZip.errors.required" class="alert alert-danger" color="danger">
+                <p color="danger">Please enter Garaging address ZIP code.</p>
+            </div>
+            <div class="alert alert-danger" *ngIf="vehGarageZip.errors.minlength" color="danger">
+                <p color="danger">
+                    Zip code should have {{vehGarageZip.errors.minlength.requiredLength}} characters.
+                </p>
+            </div>
+        </div>
+
+        <ion-item class="form-group">
+            <ion-label for="vehMSRP" color="danger">MSRP</ion-label>
+            <ion-input (ngModel)="vehMSRP" #vehMSRP="ngModel" id="vehMSRP" type="text" class="form-control" name="vehMSRP" required>
+            </ion-input>
+        </ion-item>
+
+        <ion-list>
+            <ion-item class="form-group">
+                <ion-label>Vehicle Use</ion-label>
+                <ion-select (ngModel)="vehUse">
+                    <ion-option value="work">Work</ion-option>
+                    <ion-option value="school">School</ion-option>
+                    <ion-option value="business">Business</ion-option>
+                    <ion-option value="farm">Farm</ion-option>
+                    <ion-option value="pleasure">Pleasure</ion-option>
+                    <ion-option value="artisan">Artisan</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+        <ion-item class="form-group">
+            <ion-label for="vehDistToWork" color="danger">Dist. to Work</ion-label>
+            <ion-input (ngModel)="vehDistToWork" #vehDistToWork="ngModel" id="vehDistToWork" type="text" class="form-control" name="vehDistToWork"
+                required>
+            </ion-input>
+        </ion-item>
+        <ion-item class="form-group">
+            <ion-label for="vehDistToWork1Way" color="danger">1-Way</ion-label>
+            <ion-input (ngModel)="vehDistToWork1Way" #vehDistToWork1Way="ngModel" id="vehDistToWork1Way" type="text" class="form-control"
+                name="vehDistToWork1Way" required>
+            </ion-input>
+        </ion-item>
+        <ion-item class="form-group">
+            <ion-label for="vehAnnualMileage" color="danger">Annual Mileage</ion-label>
+            <ion-input (ngModel)="vehAnnualMileage" #vehAnnualMileage="ngModel" id="vehAnnualMileage" type="text" class="form-control"
+                name="vehAnnualMileage" required>
+            </ion-input>
+        </ion-item>
+
+        <button ion-button color="danger" (click)="openDriverDetails()">Add Another Vehicle</button>
+        <button ion-button color="danger" (click)="openDriverDetails()">Save & Proceed</button>
+    </form>
+</ion-content>

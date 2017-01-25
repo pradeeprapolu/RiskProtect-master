@@ -1,0 +1,76 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Basic Info
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="location-info">
+
+    <form>
+
+        <ion-label color="danger" text-center>
+            <h1><b>CGI</b></h1>
+        </ion-label>
+        <ion-label color="danger" padding text-center>
+            <p><b>Please provide your Location and Policy effective Date to Proceed Further</b></p>
+        </ion-label>
+
+
+
+        <ion-item class="form-group">
+            <ion-label>Zip Code</ion-label>
+            <ion-input (ngModel)="locationZipCode" #locationZipCode="ngModel" id="locationZipCode" type="text" class="form-control" name="locationZipCode"
+                required minlength ="5" maxlength="5">
+            </ion-input>
+        </ion-item>
+         <div *ngIf="locationZipCode.touched && locationZipCode.errors">
+              <div *ngIf= "locationZipCode.errors.required" 
+                  class="alert alert-danger" color="danger">
+                    <p color="danger">Please enter your ZIP code.</p>
+              </div>
+              <div class="alert alert-danger"
+                  *ngIf = "locationZipCode.errors.minlength" color="danger"> 
+                      <p color="danger">
+                          Zip code should have {{locationZipCode.errors.minlength.requiredLength}} characters.
+                      </p>
+              </div>
+          </div>
+
+        <ion-list>
+            <ion-item class="form-group">
+                <ion-label>State</ion-label>
+                <ion-select (ngModel)="locState">
+                    <ion-option value="connecticut">CT</ion-option>
+                    <ion-option value="newJersy">NJ</ion-option>
+                    <ion-option value="ohio">OH</ion-option>
+                    <ion-option value="idaho">ID</ion-option>
+                    <ion-option value="washington">WA</ion-option>
+                    <ion-option value="oregon">OR</ion-option>
+                    <ion-option value="rhodeIsland">RI</ion-option>
+                    <ion-option value="tennessee">TN</ion-option>
+                    <ion-option value="newYork">NY</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+        <ion-item class="form-group">
+            <ion-label>Policy Effective Date</ion-label>
+            <ion-datetime pickerFormat="MMM DD YYYY" displayFormat="MM-DD-YYYY" [(ngModel)]="polEffDate" name="polEffDate"></ion-datetime>
+        </ion-item>
+
+        <ion-list>
+            <ion-item class="form-group">
+                <ion-label>Policy Type</ion-label>
+                <ion-select (ngModel)="policyType">
+                    <ion-option value="split">Split</ion-option>
+                    <ion-option value="combined">Combined</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+        <button ion-button color="danger" (click) = "openVehicleInfo()">PROCEED</button>
+
+    </form>
+</ion-content>

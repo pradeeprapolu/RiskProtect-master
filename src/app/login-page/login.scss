@@ -1,0 +1,40 @@
+
+// $primary-color : red;
+// $vertical-align-center: middle;
+// $horizontal-align-center: center;
+// $header-size: 200%;
+
+
+// login{
+
+//     .header-text{
+//     text-align: $horizontal-align-center;
+//     //vertical-align: $vertical-align-center;
+//     //line-height: 250px;
+//     font-size: $header-size; 
+//     color: $primary-color;
+//     }
+
+// }
+
+.header {
+        //vertical-align: middle;
+        font-size: 50px !important;
+        font-weight: bold;
+    
+    }
+
+.align-center{
+    text-align: center;
+}
+
+.margin-bottom{
+margin-bottom: 20px !important;
+}
+
+.item-borderless{
+    border-top: 0px;
+border-left: 0px;
+border-right: 0px;
+border-bottom: white;
+}

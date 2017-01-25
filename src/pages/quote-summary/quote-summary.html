@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Quote Summary
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="quote-summary">
+
+    <form>
+
+        <ion-label text-center>
+            <h1 color="danger">
+                <b>CGI</b>
+            </h1>
+        </ion-label>
+
+
+        <ion-label color="danger" padding text-center><b>Effective Date:</b></ion-label>
+        <ion-label color="danger" padding text-center><b>Expiration Date:</b></ion-label>
+
+        <ion-label color="danger" padding text-center>
+            <h1><b>Total Quote Premium</b></h1>
+        </ion-label>
+
+        <ion-label color="danger" padding text-center>
+            <h1>$ </h1>
+        </ion-label>
+
+        <button ion-button block round color="light" (click)="openPolicySummary()"><a color="danger"><b>Vehicle 1 Details</b></a></button><br>
+
+        <button ion-button block round color="light" (click)="openPolicySummary()"><a color="danger"><b>Vehicle 2 Details</b></a></button><br>
+
+        <button ion-button block round color="light" (click)="openPolicySummary()"><a color="danger"><b>Vehicle 3 Details</b></a></button><br>
+        <ion-segment>
+            <button ion-button color="danger" (click)="openPolicySummaryPage()">Modify Quote</button>
+            <button ion-button color="danger" (click)="openQuoteSummary()">Re-Rate</button>
+        </ion-segment>
+        <button ion-button color="danger" (click)="openApplicantInfoPage()">Convert to Policy</button>
+    </form>
+</ion-content>

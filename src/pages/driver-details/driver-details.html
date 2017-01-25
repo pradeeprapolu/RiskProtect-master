@@ -1,0 +1,141 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Driver Details
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="driver-details">
+
+    <form>
+
+        <ion-label color="danger">
+            <h1><b>CGI</b></h1>
+        </ion-label>
+
+        <ion-segment>
+            <ion-item class="form-group">
+                <ion-label for="driverFirstName" floating>First Name</ion-label>
+                <ion-input (ngModel)="driverFirstName" #driverFirstName="ngModel" id="driverFirstName" class="form-control" type="text" name="driverFirstName"
+                    required minlength="3">
+                </ion-input>
+            </ion-item>
+
+
+            <ion-item class="form-group">
+                <ion-label for="driverMiddleName" floating>Middle Name</ion-label>
+                <ion-input (ngModel)="driverMiddleName" #driverMiddleName="ngModel" id="driverMiddleName" type="text" class="form-control"
+                    name="driverMiddleName" maxlength="1">
+                </ion-input>
+            </ion-item>
+        </ion-segment>
+
+        <div *ngIf="driverFirstName.touched && driverFirstName.errors">
+            <div *ngIf="driverFirstName.errors.required" class="alert alert-danger" color="danger">
+                <p color="danger">First Name is required.</p>
+            </div>
+            <div class="alert alert-danger" *ngIf="driverFirstName.errors.minlength" color="danger">
+                <p color="danger">
+                    First name should be minimum {{driverFirstName.errors.minlength.requiredLength}} characters.
+                </p>
+            </div>
+        </div>
+
+        <ion-item class="form-group">
+            <ion-label for="driverLastName" floating>Last Name</ion-label>
+            <ion-input (ngModel)="driverLastName" #driverLastName="ngModel" id="driverLastName" type="text" class="form-control" name="driverLastName"
+                required minlength="3">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <div *ngIf="driverLastName.touched && driverLastName.errors">
+                <div *ngIf="driverLastName.errors.required" class="alert alert-danger" color="danger">
+                    <p color="danger">Last Name is required.</p>
+                </div>
+                <div class="alert alert-danger" *ngIf="driverLastName.errors.minlength" color="danger">
+                    <p color="danger">
+                        Last name should be minimum {{driverLastName.errors.minlength.requiredLength}} characters.
+                    </p>
+                </div>
+            </div>
+        </ion-item>
+
+        <ion-list>
+            <ion-item class="form-group">
+                <ion-label>Gender</ion-label>
+                <ion-select (ngModel)="driverGender">
+                    <ion-option value="male">Male</ion-option>
+                    <ion-option value="female">Female</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+        <ion-item>
+            <ion-label>Date of Birth</ion-label>
+            <ion-datetime pickerFormat="MMM DD YYYY" displayFormat="MM-DD-YYYY" [(ngModel)]="driverDOB" name="driverDOB"></ion-datetime>
+        </ion-item>
+
+        <ion-list>
+            <ion-item>
+                <ion-label>Marital Status</ion-label>
+                <ion-select (ngModel)="driverMaritalStatus" name="driverMaritalStatus">
+                    <ion-option value="married">Married</ion-option>
+                    <ion-option value="single">Single</ion-option>
+                    <ion-option value="divorced">Divorced</ion-option>
+                    <ion-option value="separated">Separated</ion-option>
+                    <ion-option value="widowed">Widowed</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+        <ion-item class="form-group">
+            <ion-label for="driverLicenseNum" floating>DLN#</ion-label>
+            <ion-input (ngModel)="driverLicenseNum" #driverLicenseNum="ngModel" id="driverLicenseNum" class="form-control" type="text"
+                name="driverLicenseNum" required maxlength="12">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Licensed Date:</ion-label>
+            <ion-datetime pickerFormat="MMM DD YYYY" displayFormat="MM-DD-YYYY" [(ngModel)]="driverLicDate" name="driverLicDate"></ion-datetime>
+        </ion-item>
+
+        <ion-segment>
+            <ion-list>
+                <ion-item>
+                    <ion-label>License State</ion-label>
+                    <ion-select (ngModel)="driverLicState" name="driverLicState">
+                        <ion-option value="connecticut">CT</ion-option>
+                        <ion-option value="newJersy">NJ</ion-option>
+                        <ion-option value="ohio">OH</ion-option>
+                        <ion-option value="idaho">ID</ion-option>
+                        <ion-option value="washington">WA</ion-option>
+                        <ion-option value="oregon">OR</ion-option>
+                        <ion-option value="rhodeIsland">RI</ion-option>
+                        <ion-option value="tennessee">TN</ion-option>
+                        <ion-option value="newYork">NY</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-list>
+
+            <ion-list>
+                <ion-item>
+                    <ion-label>License Status</ion-label>
+                    <ion-select (ngModel)="driverLicStatus" name="driverLicStatus">
+                        <ion-option value="activeUS">Active US License</ion-option>
+                        <ion-option value="activeCanadian">Active Canadian License</ion-option>
+                        <ion-option value="activeIntForeign">Active Int./Foreign License</ion-option>
+                        <ion-option value="suspended">Suspended</ion-option>
+                        <ion-option value="revoked">Revoked</ion-option>
+                        <ion-option value="notLicensed">Not Licensed</ion-option>
+                        <ion-option value="learnersPermit">Learners Permit</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-list>
+        </ion-segment>
+        <button ion-button color="danger" (click)="addNewDriverPage()">Add New Driver</button>
+        <button ion-button color="danger" (click)="openCoverageInfoPage()">Save & Proceed</button>
+
+    </form>
+</ion-content>

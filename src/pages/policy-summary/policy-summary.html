@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Policy Summary
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="policy-summary">
+
+    <form>
+
+        <button ion-button block round color="light" (click)="openVehiclesSummary()"><a color="danger"><b>Vehicle(s) Summary</b></a></button><br>
+
+        <button ion-button block round color="light" (click)="openDriversSummary()"><a color="danger"><b>Driver(s) Summary</b></a></button><br>
+
+        <button ion-button block round color="light" (click)="openCoverageSummary()"><a color="danger"><b>Coverages Summary</b></a></button><br>
+
+        <button ion-button block round color="light" (click)="openApplicantInfo()"><a color="danger"><b>Applicant Information</b></a></button><br>
+
+        <button ion-button block round color="light" (click)="openIncidentInfo()"><a color="danger"><b>Incidents Information</b></a></button><br>
+
+        <button ion-button block round color="light" (click)="openQuoteSummary()"><a color="danger"><b>Quote Summary</b></a></button>
+
+         <button ion-button color="danger" (click) = "openQuoteSummary()">Request Premium</button>
+    </form>
+</ion-content>
